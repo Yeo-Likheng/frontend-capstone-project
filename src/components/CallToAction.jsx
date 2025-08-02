@@ -1,5 +1,5 @@
 import '../index.css';
-
+import { Link } from 'react-router-dom';
 const CallToAction = () => {
   return (
     <section className="hero-section">
@@ -11,7 +11,9 @@ const CallToAction = () => {
             <p className="hero-description">
               We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
             </p>
-            <button className="cta-button">Reserve a Table</button>
+            <Link to="/reservations">
+                 <button className="cta-button">Reserve a Table</button>
+            </Link>
           </div>
           <div className="hero-image">
             <img 
