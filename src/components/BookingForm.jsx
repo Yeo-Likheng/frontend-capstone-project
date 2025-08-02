@@ -1,8 +1,11 @@
-import { useState, useReducer } from "react";
+import { useState } from "react";
 import BookingSlotsList from "./BookingSlotsList";
+import { useNavigate } from 'react-router-dom';
 import "../booking.css"
 
 const BookingForm = ({ availableTimes, dispatch, submitForm, bookedSlots }) => {
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
@@ -22,19 +25,31 @@ const BookingForm = ({ availableTimes, dispatch, submitForm, bookedSlots }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
+      name,
       date,
       time,
       guests,
       occasion
     };
     
-    if (submitForm(formData)) {
+
+    const isSubmitted = submitForm(formData);
+    
+    if (isSubmitted) {
       // Reset form on successful submission
+      setName('');
       setDate('');
       setTime('');
       setGuests(1);
       setOccasion('Birthday');
-      alert('Reservation submitted successfully!');
+      navigate('/booking-confirmation', { 
+          state: { 
+            bookingData: formData,
+            success: true 
+          } 
+        });
+    } else {
+      alert('Failed to submit reservation. Please try again.');
     }
   };
 
@@ -46,6 +61,20 @@ const BookingForm = ({ availableTimes, dispatch, submitForm, bookedSlots }) => {
       <form className="booking-form" onSubmit={handleSubmit}>
         <h2 className="form-title">Reserve a Table</h2>
         
+        <div className="form-group">
+          <label htmlFor="customer-name" className="form-label">Full Name</label>
+          <input 
+            type="text" 
+            id="customer-name" 
+            name="customer-name"
+            className="form-input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+
         <div className="form-group">
           <label htmlFor="res-date" className="form-label">Choose date</label>
           <input 

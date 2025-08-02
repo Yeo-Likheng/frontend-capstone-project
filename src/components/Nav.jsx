@@ -13,8 +13,8 @@ const Nav = () => {
               <a href="#home" className="nav-link active">Home</a>
               <a href="#about" className="nav-link">About</a>
               <a href="#menu" className="nav-link">Menu</a>
-              <Link to="/reservations">
-                <a href="#reservation" className="nav-link">Reservations</a>
+              <Link to="/reservations" className="nav-link">
+                Reservations
               </Link>
               <a href="#order" className="nav-link">Order Online</a>
               <a href="#login" className="nav-link">Login</a>

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import BookingForm from '../BookingForm'
+import BookingForm from '../../components/BookingForm'
 
 describe('BookingForm', () => {
   const mockProps = {
